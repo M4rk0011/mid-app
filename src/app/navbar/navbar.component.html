@@ -1,0 +1,38 @@
+<!-- Cyborg Theme Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" style="border-bottom: 2px solid #00bc8c;">
+  <div class="container">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" routerLink="/">
+      <strong style="color: #00bc8c; text-shadow: 0 0 10px #00bc8c;">⚡ YADAO DATA BINDING</strong>
+    </a>
+    
+    <!-- Toggle button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="font-weight: 500;">
+            <i class="bi bi-house-fill me-1"></i> HOME
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/interpolation" routerLinkActive="active" style="font-weight: 500;">
+            <i class="bi bi-braces me-1"></i> INTERPOLATION
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/property-binding" routerLinkActive="active" style="font-weight: 500;">
+            <i class="bi bi-link-45deg me-1"></i> PROPERTY BINDING
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- router-outlet is here para sa mga child components -->
+<router-outlet></router-outlet>

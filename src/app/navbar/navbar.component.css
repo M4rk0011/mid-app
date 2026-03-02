@@ -1,0 +1,39 @@
+/* Additional custom styles for Cyborg theme */
+.navbar {
+  box-shadow: 0 2px 20px rgba(0, 188, 140, 0.3);
+}
+
+.nav-link {
+  position: relative;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00bc8c !important;
+  text-shadow: 0 0 8px #00bc8c;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  color: #00bc8c !important;
+  border-bottom: 2px solid #00bc8c;
+}
+
+.navbar-brand {
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 15px #00bc8c;
+}
+
+/* Mobile styles */
+@media (max-width: 991px) {
+  .nav-link.active {
+    border-bottom: none;
+    background-color: rgba(0, 188, 140, 0.1);
+    border-radius: 5px;
+  }
+}
