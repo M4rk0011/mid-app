@@ -6,10 +6,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, RouterOutlet], // RouterOutlet ay nasa imports
+  imports: [CommonModule, NavbarComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'midd-app';
+  title = 'mid-app';
 }
