@@ -1,0 +1,29 @@
+/* Additional custom styles */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 188, 140, 0.3);
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 188, 140, 0.5);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+code {
+  background-color: #333;
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: #00bc8c;
+}
