@@ -4,7 +4,8 @@ export interface Product {
   category: string;
   price: number;
   stock: number;
-  status: string;
+  status: 'Available' | 'Out of Stock' | 'Limited';
   description: string;
-  rating?: number;
+  imageUrl?: string; 
+  rating?: number; 
 }
