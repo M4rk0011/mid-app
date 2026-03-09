@@ -14,5 +14,5 @@ export const routes: Routes = [
   { path: 'event-binding', component: EventBindingComponent },
   { path: 'two-way-binding', component: TwoWayBindingComponent },
   { path: 'products', component: ProductListComponent },
-  { path: 'products/:id', component: ProductDetailsComponent }
+  { path: 'products/:id', component: ProductDetailsComponent } // Ito ang importante!
 ];
