@@ -3,6 +3,7 @@
     <div class="col-12">
       <div class="card" style="background-color: #1a1a1a; border: 2px solid #00bc8c; border-radius: 15px;">
         <div class="card-header" style="background-color: #00bc8c; color: white;">
+<<<<<<< HEAD
           <div class="d-flex justify-content-between align-items-center">
             <h3 class="mb-0"><i class="bi bi-box-seam me-2"></i>Product Details</h3>
             <div>
@@ -34,6 +35,12 @@
             </div>
           }
           
+=======
+          <h3 class="mb-0"><i class="bi bi-box-seam me-2"></i>Product Details</h3>
+        </div>
+        <div class="card-body">
+          
+>>>>>>> 8b5b489a3fb9f79b7b330689b050d0a894b30f49
           <!-- Loading State -->
           @if (loading) {
             <div class="text-center text-white">
@@ -47,11 +54,16 @@
           <!-- Product Found -->
           @if (!loading && product) {
             
+<<<<<<< HEAD
             <!-- Product Image (Optional) -->
+=======
+            <!-- Product Image -->
+>>>>>>> 8b5b489a3fb9f79b7b330689b050d0a894b30f49
             @if (product.imageUrl) {
               <div class="text-center mb-4">
                 <img [src]="product.imageUrl" 
                      alt="{{ product.name }}" 
+<<<<<<< HEAD
                      style="max-width: 150px; max-height: 150px; object-fit: contain; border-radius: 10px; border: 2px solid #00bc8c; padding: 3px;">
               </div>
             }
@@ -82,10 +94,26 @@
                          [value]="product.name" 
                          readonly>
                 }
+=======
+                     style="max-width: 200px; max-height: 200px; object-fit: contain; border-radius: 10px; border: 2px solid #00bc8c; padding: 5px;">
+              </div>
+            }
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Product ID</label>
+                <div class="form-control bg-dark text-white border-secondary" readonly style="color: white !important;">{{ product.id }}</div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Product Name</label>
+                <div class="form-control bg-dark text-white border-secondary" readonly style="color: white !important;">{{ product.name }}</div>
+>>>>>>> 8b5b489a3fb9f79b7b330689b050d0a894b30f49
               </div>
             </div>
             
             <div class="row">
+<<<<<<< HEAD
               <!-- Category (Editable) -->
               <div class="col-md-6 mb-3">
                 <label class="form-label text-white-50 fw-bold">Category</label>
@@ -120,10 +148,21 @@
                          [value]="'₱' + product.price.toLocaleString()" 
                          readonly>
                 }
+=======
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Category</label>
+                <div class="form-control bg-dark text-white border-secondary" readonly style="color: white !important;">{{ product.category }}</div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Price</label>
+                <div class="form-control bg-dark text-white border-secondary" readonly style="color: white !important;">₱{{ product.price.toLocaleString() }}</div>
+>>>>>>> 8b5b489a3fb9f79b7b330689b050d0a894b30f49
               </div>
             </div>
             
             <div class="row">
+<<<<<<< HEAD
               <!-- Stock (Editable) -->
               <div class="col-md-6 mb-3">
                 <label class="form-label text-white-50 fw-bold">Stock</label>
@@ -219,6 +258,44 @@
             <div class="mt-4">
               <a routerLink="/products" class="btn" style="background-color: #00bc8c; color: white; border: none;">
                 <i class="bi bi-arrow-left me-2"></i>BACK TO PRODUCTS
+=======
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Stock</label>
+                <div class="form-control bg-dark text-white border-secondary" readonly style="color: white !important;">{{ product.stock }}</div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50">Status</label>
+                <div class="form-control bg-dark border-secondary" readonly
+                     [style.color]="
+                       product.status === 'Available' ? '#00bc8c' : 
+                       product.status === 'Out of Stock' ? '#dc3545' : 
+                       '#ffc107'
+                     "
+                     style="font-weight: bold;">
+                  {{ product.status }}
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label text-white-50">Description</label>
+              <textarea class="form-control bg-dark text-white border-secondary" rows="3" readonly style="color: white !important;">{{ product.description }}</textarea>
+            </div>
+            
+            @if (product.rating) {
+              <div class="mb-3">
+                <label class="form-label text-white-50">Rating</label>
+                <div class="text-white" style="color: white !important; font-size: 1.2rem;">
+                  {{ product.rating }} ⭐
+                </div>
+              </div>
+            }
+            
+            <div class="mt-4">
+              <a routerLink="/products" class="btn" style="background-color: #00bc8c; color: white; border: none;">
+                <i class="bi bi-arrow-left me-2"></i>Back to Products
+>>>>>>> 8b5b489a3fb9f79b7b330689b050d0a894b30f49
               </a>
             </div>
           }
