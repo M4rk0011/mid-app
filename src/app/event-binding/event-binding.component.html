@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card" style="background-color: #1a1a1a; border: 2px solid #00bc8c; border-radius: 15px;">
+        <div class="card-header" style="background-color: #00bc8c; color: white;">
+          <h3 class="mb-0"><i class="bi bi-lightning-charge-fill me-2"></i>Event Binding Examples</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-white">Syntax: <code>(event)="handler()"</code></p>
+          
+          <!-- Click Event -->
+          <div class="mb-4">
+            <h5 style="color: #00bc8c;">1. Click Event</h5>
+            <button class="btn" (click)="clickCount = clickCount + 1" style="background-color: #00bc8c;">
+              Click Me ({{ clickCount }})
+            </button>
+          </div>
+          
+          <!-- Input Event -->
+          <div class="mb-4">
+            <h5 style="color: #00bc8c;">2. Input Event</h5>
+            <input type="text" class="form-control bg-dark text-white" 
+                   (input)="inputValue = $any($event.target).value"
+                   placeholder="Type something">
+            <p class="text-white mt-2">You typed: {{ inputValue }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

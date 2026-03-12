@@ -1,0 +1,240 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card" style="background-color: #1a1a1a; border: 2px solid #00bc8c; border-radius: 15px;">
+        <div class="card-header" style="background-color: #00bc8c; color: white;">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0"><i class="bi bi-box-seam me-2"></i>Product Details</h3>
+            <div>
+              @if (!isEditing) {
+                <button class="btn btn-sm" 
+                        style="background-color: white; color: #00bc8c; border: none; font-weight: bold;"
+                        (click)="toggleEdit()">
+                  <i class="bi bi-pencil-square me-1"></i> EDIT PRODUCT
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          
+          <!-- Success Message -->
+          @if (saveSuccess) {
+            <div class="alert alert-success" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              Product saved successfully!
+            </div>
+          }
+          
+          <!-- Error Message -->
+          @if (saveError) {
+            <div class="alert alert-danger" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              Error saving product. Please try again.
+            </div>
+          }
+          
+          <!-- Loading State -->
+          @if (loading) {
+            <div class="text-center text-white">
+              <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="text-white">Loading product details...</p>
+            </div>
+          }
+          
+          <!-- Product Found -->
+          @if (!loading && product) {
+            
+            <!-- Product Image (Optional) -->
+            @if (product.imageUrl) {
+              <div class="text-center mb-4">
+                <img [src]="product.imageUrl" 
+                     alt="{{ product.name }}" 
+                     style="max-width: 150px; max-height: 150px; object-fit: contain; border-radius: 10px; border: 2px solid #00bc8c; padding: 3px;">
+              </div>
+            }
+            
+            <!-- EDITABLE FIELDS -->
+            <div class="row">
+              <!-- Product ID (Read Only) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Product ID</label>
+                <input type="text" 
+                       class="form-control bg-dark text-white border-secondary" 
+                       [value]="product.id" 
+                       readonly
+                       style="background-color: #333 !important; color: #00bc8c !important; font-weight: bold;">
+              </div>
+              
+              <!-- Product Name (Editable) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Product Name</label>
+                @if (isEditing) {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-success" 
+                         [(ngModel)]="product.name"
+                         style="border: 2px solid #00bc8c !important;">
+                } @else {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-secondary" 
+                         [value]="product.name" 
+                         readonly>
+                }
+              </div>
+            </div>
+            
+            <div class="row">
+              <!-- Category (Editable) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Category</label>
+                @if (isEditing) {
+                  <select class="form-select bg-dark text-white border-success" 
+                          [(ngModel)]="product.category"
+                          style="border: 2px solid #00bc8c !important;">
+                    <option value="Electronics">Electronics</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Storage">Storage</option>
+                    <option value="Audio">Audio</option>
+                  </select>
+                } @else {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-secondary" 
+                         [value]="product.category" 
+                         readonly>
+                }
+              </div>
+              
+              <!-- Price (Editable) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Price (₱)</label>
+                @if (isEditing) {
+                  <input type="number" 
+                         class="form-control bg-dark text-white border-success" 
+                         [(ngModel)]="product.price"
+                         style="border: 2px solid #00bc8c !important;">
+                } @else {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-secondary" 
+                         [value]="'₱' + product.price.toLocaleString()" 
+                         readonly>
+                }
+              </div>
+            </div>
+            
+            <div class="row">
+              <!-- Stock (Editable) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Stock</label>
+                @if (isEditing) {
+                  <input type="number" 
+                         class="form-control bg-dark text-white border-success" 
+                         [(ngModel)]="product.stock"
+                         style="border: 2px solid #00bc8c !important;">
+                } @else {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-secondary" 
+                         [value]="product.stock" 
+                         readonly>
+                }
+              </div>
+              
+              <!-- Status (Editable) -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white-50 fw-bold">Status</label>
+                @if (isEditing) {
+                  <select class="form-select bg-dark text-white border-success" 
+                          [(ngModel)]="product.status"
+                          style="border: 2px solid #00bc8c !important;">
+                    <option value="Available" style="color: #00bc8c;">Available</option>
+                    <option value="Out of Stock" style="color: #dc3545;">Out of Stock</option>
+                    <option value="Limited" style="color: #ffc107;">Limited</option>
+                  </select>
+                } @else {
+                  <input type="text" 
+                         class="form-control bg-dark text-white border-secondary" 
+                         [value]="product.status" 
+                         readonly
+                         [style.color]="
+                           product.status === 'Available' ? '#00bc8c' : 
+                           product.status === 'Out of Stock' ? '#dc3545' : 
+                           '#ffc107'
+                         "
+                         style="font-weight: bold;">
+                }
+              </div>
+            </div>
+            
+            <!-- Description (Editable) -->
+            <div class="mb-3">
+              <label class="form-label text-white-50 fw-bold">Description</label>
+              @if (isEditing) {
+                <textarea class="form-control bg-dark text-white border-success" 
+                          rows="4" 
+                          [(ngModel)]="product.description"
+                          style="border: 2px solid #00bc8c !important;"></textarea>
+              } @else {
+                <textarea class="form-control bg-dark text-white border-secondary" 
+                          rows="4" 
+                          readonly>{{ product.description }}</textarea>
+              }
+            </div>
+            
+            <!-- Rating (Editable - Optional) -->
+            @if (product.rating) {
+              <div class="mb-3">
+                <label class="form-label text-white-50 fw-bold">Rating</label>
+                @if (isEditing) {
+                  <input type="number" step="0.1" min="0" max="5" 
+                         class="form-control bg-dark text-white border-success" 
+                         [(ngModel)]="product.rating"
+                         style="border: 2px solid #00bc8c !important;">
+                } @else {
+                  <div class="text-white">
+                    {{ product.rating }} ⭐
+                  </div>
+                }
+              </div>
+            }
+            
+            <!-- EDIT MODE BUTTONS -->
+            @if (isEditing) {
+              <div class="mt-4 d-flex gap-3">
+                <button class="btn px-4 py-2" 
+                        style="background-color: #00bc8c; color: white; border: none; font-weight: bold;"
+                        (click)="saveProduct()"
+                        [disabled]="!hasChanges()">
+                  <i class="bi bi-check-lg me-2"></i>SAVE CHANGES
+                </button>
+                <button class="btn px-4 py-2" 
+                        style="background-color: #6c757d; color: white; border: none; font-weight: bold;"
+                        (click)="cancelEdit()">
+                  <i class="bi bi-x-lg me-2"></i>CANCEL
+                </button>
+              </div>
+            }
+            
+            <!-- Back Button -->
+            <div class="mt-4">
+              <a routerLink="/products" class="btn" style="background-color: #00bc8c; color: white; border: none;">
+                <i class="bi bi-arrow-left me-2"></i>BACK TO PRODUCTS
+              </a>
+            </div>
+          }
+          
+          <!-- Product Not Found -->
+          @if (!loading && !product) {
+            <div class="alert alert-danger">
+              <h4 class="alert-heading text-white">Product Not Found!</h4>
+              <p class="text-white">The product you're looking for does not exist.</p>
+              <hr>
+              <a routerLink="/products" class="btn btn-danger text-white">Back to Products</a>
+            </div>
+          }
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

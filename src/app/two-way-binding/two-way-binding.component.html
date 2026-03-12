@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card" style="background-color: #1a1a1a; border: 2px solid #00bc8c; border-radius: 15px;">
+        <div class="card-header" style="background-color: #00bc8c; color: white;">
+          <h3 class="mb-0"><i class="bi bi-arrow-left-right me-2"></i>Two-Way Binding Examples</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-white">Syntax: <code>[(ngModel)]="property"</code></p>
+          
+          <!-- Text Input -->
+          <div class="mb-4">
+            <h5 style="color: #00bc8c;">1. Text Input</h5>
+            <input type="text" class="form-control bg-dark text-white" 
+                   [(ngModel)]="username" 
+                   placeholder="Enter name">
+            <p class="text-white mt-2">Hello, {{ username || 'Guest' }}!</p>
+          </div>
+          
+          <!-- Checkbox -->
+          <div class="mb-4">
+            <h5 style="color: #00bc8c;">2. Checkbox</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="isActive" id="active">
+              <label class="form-check-label text-white" for="active">Active</label>
+            </div>
+            <p class="text-white">Status: {{ isActive ? 'Active' : 'Inactive' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
